@@ -38,7 +38,7 @@ df['lifetime_spend'] = df['spend'] / (df['first_month'] + 1e-10)
 
 df.to_csv('loyalty_cleaned.csv', index=False)
 
-"""fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+fig, axes = plt.subplots(2, 2, figsize=(15, 10))
 
 sns.boxplot(data=df, x='spend', ax=axes[0, 0], showfliers=False)
 sns.stripplot(data=df, x='spend', ax=axes[0, 0], color="red", alpha=0.5)
@@ -85,7 +85,7 @@ def find_outliers(data):
     outliers = data[(data < lower) | (data > upper)]
 
     return outliers
-"""
+
 
 X = df.drop(columns=['spend', 'customer_id'], axis=1)
 y = df['spend']
@@ -117,11 +117,11 @@ param_grid = {
     'min_samples_leaf': [1, 2, 4]
 }
 
-"""rf_grid_search = GridSearchCV(RandomForestRegressor(n_jobs=-1), param_grid=param_grid, scoring='neg_mean_squared_error')
+rf_grid_search = GridSearchCV(RandomForestRegressor(n_jobs=-1), param_grid=param_grid, scoring='neg_mean_squared_error')
 rf_grid_search.fit(X_train, y_train)
 
 print(f'Best parameters found: {rf_grid_search.best_params_}')
-print(f'Best MSE: {rf_grid_search.best_score_}')"""
+print(f'Best MSE: {rf_grid_search.best_score_}')
 
 feature_importances = rf.feature_importances_
 feature_names = X.columns
